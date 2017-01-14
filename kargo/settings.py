@@ -56,6 +56,7 @@ THIRD_PARTY_APPS = (
 # Contains your own apps
 LOCAL_APPS = (
     'orders',
+    'vendors',
 )
 
 # Application definition

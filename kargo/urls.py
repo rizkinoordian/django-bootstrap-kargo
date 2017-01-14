@@ -18,6 +18,7 @@ from django.contrib import admin
 
 from orders import views as orders_views
 from orders import urls as orders_url
+from vehicles import urls as vehicles_url
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),  # admin site
@@ -27,4 +28,6 @@ urlpatterns = [
 
     # linked url in module orders from main urls.py to app url
     url(r'^order/', include(orders_url, namespace="order")),
+
+    url(r'^vehicles/', include(vehicles_url, namespace="vehicle")),
 ]
