@@ -77,14 +77,14 @@ def edit_vehicle(request, uuid=None):
         return redirect(reverse('vehicle:management'))
 
     data = {
-        'form': VehicleForm(instance=order),
+        'form': VehicleForm(instance=vehicle),
     }
 
     # if user submit data from this page, we capture the POST data and save it
     if request.method == 'POST':
 
         # wrap POST data with the form
-        form = VehicleForm(request.POST, instance=order)
+        form = VehicleForm(request.POST, instance=vehicle)
 
         # Transaction savepoint (good to provide rollback data)
         sid = transaction.savepoint()

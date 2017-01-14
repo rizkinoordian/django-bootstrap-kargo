@@ -1,6 +1,6 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
-from orders.models import VehicleDetails
+from vehicles.models import VehicleDetails
 
 
 class VehicleForm(forms.ModelForm):
