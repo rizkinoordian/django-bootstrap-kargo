@@ -10,4 +10,10 @@ class VehicleForm(forms.ModelForm):
 
     class Meta:
         model = VehicleDetails
-        fields = ('name', 'driver', 'number', 'capacity')
+        fields = (
+            'name',
+            'image',
+            'driver',
+            'number',
+            'capacity'
+        )

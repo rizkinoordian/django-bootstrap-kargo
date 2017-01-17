@@ -7,6 +7,11 @@ from django.db import models
 # Create your models here.
 
 
+def upload_location(instance, filename):
+    filebase, extension = filename.split('.')
+    return '%s/%s.%s' % (instance.id, instance.name, extension)
+
+
 class CommonInfo(models.Model):
     """
     Abstract models contains mandatory fields on each models.
@@ -39,6 +44,15 @@ class VehicleDetails(CommonInfo):
         verbose_name = 'Customers'
 
     name = models.CharField(max_length=30)
+    image = models.ImageField(
+        upload_to=upload_location,
+        null=True,
+        blank=True,
+        width_field='width_field',
+        height_field='height_field'
+    )
+    height_field = models.IntegerField(default=0)
+    width_field = models.IntegerField(default=0)
     driver = models.CharField(max_length=30)
     number = models.IntegerField()
     capacity = models.IntegerField(default=0)

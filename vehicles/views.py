@@ -36,16 +36,19 @@ def create_vehicle(request):
     if request.method == 'POST':
 
         # wrap POST data with the form
-        form = VehicleForm(request.POST)
+        form = VehicleForm(request.POST, request.FILES)
 
         # Transaction savepoint (good to provide rollback data)
         sid = transaction.savepoint()
+
+        print request.POST
 
         if form.is_valid():
 
             # wrap form result into dict ODOrder model fields structure
             vehicle_data = {
                 'name': form.cleaned_data.get('name'),
+                'image': form.cleaned_data.get('image'),
                 'driver': form.cleaned_data.get('driver'),
                 'number': form.cleaned_data.get('number'),
                 'capacity': form.cleaned_data.get('capacity'),
@@ -84,7 +87,7 @@ def edit_vehicle(request, uuid=None):
     if request.method == 'POST':
 
         # wrap POST data with the form
-        form = VehicleForm(request.POST, instance=vehicle)
+        form = VehicleForm(request.POST, request.FILES, instance=vehicle)
 
         # Transaction savepoint (good to provide rollback data)
         sid = transaction.savepoint()
