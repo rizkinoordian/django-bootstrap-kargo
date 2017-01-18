@@ -5,7 +5,7 @@ from vehicles.models import VehicleDetails
 
 class VehicleForm(forms.ModelForm):
     """
-    Form to manage Order data-entry
+    Form to manage Vehicle data-entry
     """
 
     class Meta:

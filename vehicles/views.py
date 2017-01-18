@@ -9,14 +9,14 @@ from vehicles.models import VehicleDetails
 
 def management(request):
     """
-    Showing list of order in management home page
+    Showing list of vehicle in management home page
     """
 
-    # query on all order records
+    # query on all vehicle records
     vehicles = VehicleDetails.objects.all()
 
-    # structured order into simple dict,
-    # later on, in template, we can render it easily, ex: {{ orders }}
+    # structured vehicle into simple dict,
+    # later on, in template, we can render it easily, ex: {{ vehicles }}
     data = {'vehicles': vehicles}
 
     return render(request, 'vehicle/management.html', data)
@@ -24,7 +24,7 @@ def management(request):
 
 def create_vehicle(request):
     """
-    Handle new order creation
+    Handle new vehicle creation
     """
 
     # Initial form and data
@@ -45,7 +45,7 @@ def create_vehicle(request):
 
         if form.is_valid():
 
-            # wrap form result into dict ODOrder model fields structure
+            # wrap form result into dict VehicleDetails model fields structure
             vehicle_data = {
                 'name': form.cleaned_data.get('name'),
                 'image': form.cleaned_data.get('image'),
@@ -67,7 +67,7 @@ def create_vehicle(request):
 
 def edit_vehicle(request, uuid=None):
     """
-    How to remove order
+    How to remove vehicle
     """
     if not uuid:
         return redirect(reverse('vehicle:management'))
@@ -107,17 +107,17 @@ def edit_vehicle(request, uuid=None):
 
 def delete_vehicle(request, uuid=None):
     """
-    How to remove order
+    How to remove vehicle
     """
     if uuid:
 
-        # finding given UUID to match order in database
+        # finding given UUID to match vehicle in database
         try:
             vehicle = VehicleDetails.objects.get(uuid=uuid)
         except VehicleDetails.DoesNotExist:
             messages.error(request, "vehicle not found")
         else:
-            # delete order from database
+            # delete vehicle from database
             vehicle.delete()
             messages.success(
                 request, 'vehicle "{}" has been deleted'.format(vehicle.name))

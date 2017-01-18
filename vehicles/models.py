@@ -4,10 +4,11 @@ import uuid as uuid
 
 from django.db import models
 
-# Create your models here.
-
 
 def upload_location(instance, filename):
+    """
+    set upload location and rename the file
+    """
     filebase, extension = filename.split('.')
     return '%s/%s.%s' % (instance.id, instance.name, extension)
 
@@ -38,7 +39,7 @@ class CommonInfo(models.Model):
 
 class VehicleDetails(CommonInfo):
     """
-    Vehicles contain name, driver, number , and capacity
+    Vehicles contain name, image, driver, number , and capacity
     """
     class Meta:
         verbose_name = 'Customers'
